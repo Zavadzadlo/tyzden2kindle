@@ -3,7 +3,7 @@ tyzden2kindle
 
 This maven project allows you to browse the tyzden.com and download the current issue. It composes the .mobi file suitable for Kindle. You need to have:
 
-- active Piano account (http://www.pianomedia.sk)
+- Active Piano account (http://www.pianomedia.sk)
 - Firefox browser (https://ftp.mozilla.org/pub/mozilla.org/firefox/releases/24.2.0esr/)
 - Maven (http://maven.apache.org/download.cgi)
 - Java SE (http://www.oracle.com/technetwork/java/javase/downloads/index.html).
@@ -15,8 +15,8 @@ To use this program you need to do the following:
 - Start the Firefox
 - Browse to tyzden.com
 - Sign in using your piano credentials
-- go to Help -> Troubleshooting Information -> Open Directory
-- copy the contents of this directory to src/main/resources/ff24esrPiano directory
+- gGo to Help -> Troubleshooting Information -> Open Directory
+- Copy the contents of this directory to src/main/resources/ff24esrPiano directory
 
 After doing this the program will be able to access the current issue and download it. The Firefox binary is expected to be in ```/usr/bin/firefox```, if you installed the Firefox to different location, please update the path to Firefox binary in ```src/main/java/org/zavadzadlo/tyzden2kindle/Utils.java```.
 
