@@ -6,5 +6,5 @@ target
 *~
 *.log
 filesForGeneration*
-src/main/resources/ff24esrPiano/*
+src/main/resources/ff24esrPiano*
 
