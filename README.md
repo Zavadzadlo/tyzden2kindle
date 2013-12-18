@@ -15,7 +15,7 @@ To use this program you need to do the following:
 - Start the Firefox
 - Browse to tyzden.com
 - Sign in using your piano credentials
-- gGo to Help -> Troubleshooting Information -> Open Directory
+- Go to Help -> Troubleshooting Information -> Open Directory
 - Copy the contents of this directory to src/main/resources/ff24esrPiano directory
 
 After doing this the program will be able to access the current issue and download it. The Firefox binary is expected to be in ```/usr/bin/firefox```, if you installed the Firefox to different location, please update the path to Firefox binary in ```src/main/java/org/zavadzadlo/tyzden2kindle/Utils.java```.
