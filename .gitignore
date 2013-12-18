@@ -1,0 +1,10 @@
+.project
+.classpath
+.settings
+.metadata
+target
+*~
+*.log
+filesForGeneration*
+src/main/resources/ff24esrPiano/*
+
