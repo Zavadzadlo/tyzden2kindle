@@ -177,7 +177,7 @@ public class MobiComposer {
     }
 
     private void generateMobi() {
-        String command = "/home/trepel/myApps/kindleApps/kindlegen-2.9/kindlegen " + genDir.getAbsolutePath() + File.separator
+        String command = Utils.KINDLEGEN_BINARY + " " + genDir.getAbsolutePath() + File.separator
             + "tyzden.opf -c0 -o tyzden-" + Utils.getYearOfCurrentIssue() + "-" + Utils.getWeekOfCurrentIssue() + ".mobi";
 
         System.out.println("Executing command:");

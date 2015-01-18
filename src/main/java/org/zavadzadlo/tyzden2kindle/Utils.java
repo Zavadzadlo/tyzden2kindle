@@ -25,6 +25,11 @@ public class Utils {
 
     private static String week = null;
     private static String year = null;
+    
+    // update this values to get the particular issue instead of current one
+    // in comments there is example for 1st issue in 2015 (in first week there was no issue)
+    private static String WEEK_OF_ISSUE = null; // = "2";
+    private static String YEAR_OF_ISSUE = null; // = "2015"
 
     private static FileFilter articleFilter;
 
@@ -34,10 +39,12 @@ public class Utils {
     public static final int MAX_ARTICLES = -1;
 
     // you need to create the contents of this file manually before execution
-    private static String FIREFOX_PROFILE_PATH = "src/main/resources/ff24esrPiano";
+    private static String FIREFOX_PROFILE_PATH = "src/main/resources/ffPiano";
 
     private static String FIREFOX_BINARY = "/usr/bin/firefox";
-
+    
+    public static String KINDLEGEN_BINARY = "/usr/bin/kindlegen";
+    
     static {
         computeWeekAndYearOfCurrentIssue();
 
@@ -63,10 +70,12 @@ public class Utils {
     }
 
     public static String getWeekOfCurrentIssue() {
+        if (WEEK_OF_ISSUE != null) return WEEK_OF_ISSUE;
         return week;
     }
 
     public static String getYearOfCurrentIssue() {
+        if (YEAR_OF_ISSUE != null) return YEAR_OF_ISSUE;
         return year;
     }
 

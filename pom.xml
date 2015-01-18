@@ -8,7 +8,14 @@
     <description>.tyzden to Kindle utility</description>
 
     <properties>
-        <version.selenium>2.37.1</version.selenium>
+        <!-- Firefox 24 ESR -->
+        <!-- <version.selenium>2.37.1</version.selenium>
+        <version.graphene.webdriver>2.0.0.Final</version.graphene.webdriver> -->
+
+        <!--  Firefox 31 ESR -->
+        <version.selenium>2.44.0</version.selenium>
+        <version.graphene.webdriver>2.0.3.Final</version.graphene.webdriver>
+
         <exec.mainClass>org.zavadzadlo.tyzden2kindle.Main</exec.mainClass>
     </properties>
 
@@ -17,7 +24,7 @@
             <dependency>
                 <groupId>org.jboss.arquillian.graphene</groupId>
                 <artifactId>graphene-webdriver</artifactId>
-                <version>2.0.0.Final</version>
+                <version>${version.graphene.webdriver}</version>
                 <type>pom</type>
                 <scope>test</scope>
             </dependency>

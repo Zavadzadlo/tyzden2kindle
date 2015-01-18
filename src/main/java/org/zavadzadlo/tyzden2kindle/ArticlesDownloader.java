@@ -24,8 +24,11 @@ public class ArticlesDownloader {
     }
 
     private Map<String, String> createArticleLinksToSectionsMap(WebDriver browser) {
-        browser.get("http://www.tyzden.sk/casopis/" + Utils.getYearOfCurrentIssue() + "/" + Utils.getWeekOfCurrentIssue()
-            + ".html");
+        String weekOfIssue = Utils.getWeekOfCurrentIssue();
+
+        String yearOfIssue = Utils.getYearOfCurrentIssue();
+
+        browser.get("http://www.tyzden.sk/casopis/" + yearOfIssue + "/" + weekOfIssue + ".html");
         Utils.waitForElementById(browser, "top");
 
         List<WebElement> cols = browser.findElements(By
@@ -42,7 +45,7 @@ public class ArticlesDownloader {
                     List<WebElement> links = linkOrSection.findElements(By.xpath("li/a"));
                     for (WebElement link : links) {
                         String href = link.getAttribute("href");
-                        if (href.contains(Utils.getYearOfCurrentIssue() + "/" + Utils.getWeekOfCurrentIssue())) {
+                        if (href.contains(Utils.getYearOfCurrentIssue() + "/" + weekOfIssue)) {
                             articlelinksToSectionMap.put(href, currentSection);
                         }
                     }
