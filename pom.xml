@@ -13,7 +13,7 @@
         <version.graphene.webdriver>2.0.0.Final</version.graphene.webdriver> -->
 
         <!--  Firefox 31 ESR -->
-        <version.selenium>2.44.0</version.selenium>
+        <version.selenium>2.45.0</version.selenium>
         <version.graphene.webdriver>2.0.3.Final</version.graphene.webdriver>
 
         <exec.mainClass>org.zavadzadlo.tyzden2kindle.Main</exec.mainClass>

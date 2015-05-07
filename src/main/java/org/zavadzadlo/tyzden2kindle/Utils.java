@@ -25,7 +25,7 @@ public class Utils {
 
     private static String week = null;
     private static String year = null;
-    
+
     // update this values to get the particular issue instead of current one
     // in comments there is example for 1st issue in 2015 (in first week there was no issue)
     private static String WEEK_OF_ISSUE = null; // = "2";
@@ -42,9 +42,9 @@ public class Utils {
     private static String FIREFOX_PROFILE_PATH = "src/main/resources/ffPiano";
 
     private static String FIREFOX_BINARY = "/usr/bin/firefox";
-    
+
     public static String KINDLEGEN_BINARY = "/usr/bin/kindlegen";
-    
+
     static {
         computeWeekAndYearOfCurrentIssue();
 
@@ -55,7 +55,7 @@ public class Utils {
         Calendar cal = Calendar.getInstance();
         year = String.valueOf(cal.get(Calendar.YEAR));
         int weekInt = cal.get(Calendar.WEEK_OF_YEAR);
-        if (cal.get(Calendar.DAY_OF_WEEK) < 5 || (cal.get(Calendar.DAY_OF_WEEK) == 5 && cal.get(Calendar.HOUR_OF_DAY) < 15)) {
+        if (cal.get(Calendar.DAY_OF_WEEK) < 5 || (cal.get(Calendar.DAY_OF_WEEK) == 5 && cal.get(Calendar.HOUR_OF_DAY) < 12)) {
             weekInt--;
         }
         week = Integer.toString(weekInt);
