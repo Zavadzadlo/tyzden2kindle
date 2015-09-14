@@ -10,14 +10,14 @@ This maven project allows you to browse the tyzden.sk and download the current i
 - Java SE (http://www.oracle.com/technetwork/java/javase/downloads/index.html).
 - Kindlegen (http://www.amazon.com/gp/feature.html?docId=1000765211)
 
-Tested with Linux (Fedora 21), Firefox 24/31 ESR, Maven 3.0.4, Java SE 6/7/8, and kindlegen 2.9.
+Tested with Linux (Fedora), Firefox 24/31/38 ESR, Maven 3.3.1, Java SE 6/7/8, and kindlegen 2.9.
 
 To use this program you need to do the following:
 
 - Start the Firefox
 - Browse to tyzden.com
 - Sign in using your piano credentials
-- Create src/main/resources/ffPiano directory
+- Create ./src/main/resources/ffPiano directory
 - Go to Help -> Troubleshooting Information -> Open Directory
 - Copy the contents of that directory to src/main/resources/ffPiano directory
 
@@ -25,7 +25,7 @@ After doing this the program will be able to access the current issue and downlo
 
 The Firefox binary is expected to be in ```/usr/bin/firefox```, Kindlegen binary is expected to be in ```/usr/bin/kindlegen```. If you want to use different locations, please update the appropriate paths in ```src/main/java/org/zavadzadlo/tyzden2kindle/Utils.java``` class.
 
-Having all this setup done, navigate to the root directory of this project (called tyzden2kindle) and run the project by executing:
+Having all this setup done, navigate to the root directory of this project (called ```tyzden2kindle```) and run the project by executing:
 
 ```
 mvn clean compile exec:java
