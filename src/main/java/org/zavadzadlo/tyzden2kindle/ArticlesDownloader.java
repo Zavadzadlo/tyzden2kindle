@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.By.ByClassName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -25,35 +26,28 @@ public class ArticlesDownloader {
 
     private Map<String, String> createArticleLinksToSectionsMap(WebDriver browser) {
         String weekOfIssue = Utils.getWeekOfCurrentIssue();
-
         String yearOfIssue = Utils.getYearOfCurrentIssue();
+        String issueUrl = "http://www.tyzden.sk/casopis/" + weekOfIssue + "-" + yearOfIssue + "/";
 
-        browser.get("http://www.tyzden.sk/casopis/" + yearOfIssue + "/" + weekOfIssue + ".html");
-        Utils.waitForElementById(browser, "top");
-
-        List<WebElement> cols = browser.findElements(By
-            .xpath("//div[@id='main_area']//div[@class='text_area']//div[@class='col']"));
-
+        browser.get(issueUrl);
+        Utils.waitForElement(browser, By.className("container"));
+        List<WebElement> sections = browser.findElements(By
+            .xpath("//div[@class='content']//div[@class='mag__contents']//div[@class='container']/div[@class='mag__section']"));
         String currentSection = null;
 
-        for (WebElement col : cols) {
-            List<WebElement> children = col.findElements(By.xpath("//*"));
-            for (WebElement linkOrSection : children) {
-                if (linkOrSection.getTagName().contains("h3")) {
-                    currentSection = linkOrSection.getText().replaceFirst("\\.", "");
-                } else if (linkOrSection.getTagName().contains("ul")) {
-                    List<WebElement> links = linkOrSection.findElements(By.xpath("li/a"));
-                    for (WebElement link : links) {
-                        String href = link.getAttribute("href");
-                        if (href.contains(Utils.getYearOfCurrentIssue() + "/" + weekOfIssue)) {
-                            articlelinksToSectionMap.put(href, currentSection);
-                        }
-                    }
-                }
+        for (WebElement section : sections) {
+            currentSection = section.findElement(By.className("mag__section-title")).getText().replace(".", "");
+            List<WebElement> links = section.findElements(By.xpath(".//h1[@class='teaser__title']/a"));
+            for (WebElement link : links) {
+                String href = link.getAttribute("href");
+                articlelinksToSectionMap.put(href, currentSection);
             }
         }
 
-        // browser.close();
+        System.out.println("Article links with sections:");
+        for (String href : articlelinksToSectionMap.keySet()) {
+            System.out.println(href + ", " + articlelinksToSectionMap.get(href));
+        }
 
         return articlelinksToSectionMap;
     }
@@ -94,13 +88,13 @@ public class ArticlesDownloader {
         }
 
         browser.get(href);
-        String text = Utils.waitForElementById(browser, "bodytext").getText().replaceAll("[\n\r]+", "</p>\n\n<p>");
-        List<WebElement> blackTexts = browser.findElements(By.xpath("//div[@class='black_area']//p[@class='text']"));
-        String desc = blackTexts.get(blackTexts.size() - 1).getText();
-        String header = Utils.waitForElement(browser, By.xpath("//div[@class='black_area']//h1")).getText();
+        String text = Utils.waitForElement(browser, By.className("article__unlocked_content")).getText().replaceAll("[\n\r]+", "</p>\n\n<p>");
+        String desc = browser.findElement(By.xpath("//div[contains(@class,'detail__title article__title')]//p")).getText();
+        String header = browser.findElement(By.xpath("//div[contains(@class,'detail__title article__title')]//h1")).getText();
         String author = ".kolektiv autorov";
-        if (browser.getPageSource().matches("(?s).*class=.?autor.?[^a-zA-Z](?s).*")) {
-            author = browser.findElement(By.xpath("//div[@class='black_area']//a[@class='autor']")).getText();
+        String authorFromPage = browser.findElement(By.xpath("//div[contains(@class,'detail__title article__title')]//p/span[@class='highlight']")).getText();
+        if (authorFromPage != null && authorFromPage.trim().length() > 2) {
+            author = authorFromPage;
         }
 
         String page = new String(template);
