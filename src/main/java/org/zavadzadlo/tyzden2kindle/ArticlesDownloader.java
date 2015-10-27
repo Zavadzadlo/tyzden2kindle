@@ -88,7 +88,7 @@ public class ArticlesDownloader {
         }
 
         browser.get(href);
-        String text = Utils.waitForElement(browser, By.className("article__unlocked_content")).getText().replaceAll("[\n\r]+", "</p>\n\n<p>");
+        String text = Utils.waitForElement(browser, By.className("detail__content")).getText().replaceAll("[\n\r]+", "</p>\n\n<p>");
         String desc = browser.findElement(By.xpath("//div[contains(@class,'detail__title article__title')]//p")).getText();
         String header = browser.findElement(By.xpath("//div[contains(@class,'detail__title article__title')]//h1")).getText();
         String author = ".kolektiv autorov";
